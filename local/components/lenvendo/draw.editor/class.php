@@ -32,9 +32,7 @@ class DrawEdit extends \CBitrixComponent
 		$isAjaxRequest = $request->getRequestMethod() == 'POST';
 
 		if ($isAjaxRequest) {
-            header('Content-type: application/json');
 			$this->processAJAX($request);
-            die();
 		} elseif(isset($this->arParams['ELEMENT_ID']) && $this->arParams['ELEMENT_ID'] > 0) {
 
 			$this->arResult = $this->getElement(['ID' => $this->arParams['ELEMENT_ID']]);
@@ -188,10 +186,10 @@ class DrawEdit extends \CBitrixComponent
 	protected function ajaxResponse($result)
 	{
         global $APPLICATION;
-
         $APPLICATION->RestartBuffer();
-
+        header('Content-type: application/json');
         echo \Bitrix\Main\Web\Json::encode($result);
+        die();
 	}
 
     /**
