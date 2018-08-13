@@ -80,7 +80,12 @@ class DrawEdit extends \CBitrixComponent
      */
 	protected function getElement($filter)
 	{
-		return CIBlockElement::GetList(["SORT" => "DESC"], $filter, false, ["nTopCount" => 1],[])->Fetch();
+		return \Bitrix\Iblock\ElementTable::getList([
+            "select"    => ["*"],
+            "filter"    => $filter,
+            "limit"     => 1
+        ])->fetch();
+
 	}
 
 	protected function save($request, $fileID)
