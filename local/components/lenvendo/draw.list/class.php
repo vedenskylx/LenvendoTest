@@ -14,16 +14,6 @@ use Bitrix\Main\Localization\Loc;
 
 class GetElements extends \CBitrixComponent
 {
-    /**
-     *  Подключаем языковые файлы
-     */
-
-    public function onIncludeComponentLang()
-    {
-        $this -> includeComponentLang(basename(__FILE__));
-        Loc::loadMessages(__FILE__);
-    }
-
     public function executeComponent()
     {
         \Bitrix\Main\Loader::includeModule('iblock');
